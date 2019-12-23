@@ -1,0 +1,29 @@
+{% extends "recipes/base.html" %}
+
+{% block header %}
+<a class="btn-flat waves-effect waves-teal margin-left" href="{% url 'recipes:index' %}">Back to list
+	<i class="material-icons left">arrow_back</i>
+</a>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col s12">
+		  <div class="card">
+		    <div class="card-content">
+		    	<span class="card-title">Confirm deletion</span>
+		      	<p>Are you sure you want to delete "{{ object }}"?</p>
+		    </div>
+		    <div class="card-action">
+		      	<button class="btn waves-effect waves-light red" type="submit" name="action">Yes, Delete
+				    <i class="material-icons right">delete</i>
+				</button> 
+				&nbsp;or&nbsp;<a class="btn-flat waves-effect waves-teal" href="{% url 'recipes:index' %}">Cancel</a>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</form>
+{% endblock %}

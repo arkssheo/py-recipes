@@ -1,0 +1,38 @@
+{% extends "recipes/base.html" %}
+
+{% block header %}
+<a class="btn-flat waves-effect waves-teal margin-left" href="{% url 'recipes:index' %}">Back to list
+	<i class="material-icons left">arrow_back</i>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col s12">
+	  <div class="card">
+	    <div class="card-content">
+	    	<span class="card-title">{{ object.title }}</span>
+	      	<p><em>By: {{ object.submitted_by }}</em></p><br>
+			<p><b>Ingredients:</b></p>
+			<ul>
+				{% for ingredient in object.ingredient_set.all %}
+					<li>{{ ingredient }}</li>
+				{% endfor %}
+			</ul>
+			<p><b>Step-by-step process:</b></p>
+			<p>{{ object.process }}</p>
+		
+	    </div>
+	    <div class="card-action">
+	      	<a class="btn waves-effect waves-light" href="{% url 'recipes:edit' object.id %}">Edit
+				<i class="material-icons right">edit</i>
+	      	</a>
+	      	<a href="{% url 'recipes:delete' object.id %}" class="btn waves-effect waves-light red" type="submit" name="action">Delete
+			    <i class="material-icons right">delete</i>
+			</a>
+	    </div>
+	  </div>
+	</div>
+</div>
+{% endblock %}
+

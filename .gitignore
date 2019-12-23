@@ -1,0 +1,5 @@
+db.sqlite3
+pyenv/
+pyrecipes/__pycache__/
+pyrecipes/recipes/__pycache__/
+pyrecipes/recipes/migrations/__pycache__/

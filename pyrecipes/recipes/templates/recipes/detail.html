@@ -1,0 +1,10 @@
+<h1>{{ recipe.title }}</h1>
+<p>By: {{ recipe.submitted_by }}</p>
+<h2>Ingredients:</h2>
+<ul>
+	{% for ingredient in recipe.ingredient_set.all %}
+		<li>{{ ingredient }}</li>
+	{% endfor %}
+</ul>
+<h2>Process:</h2>
+<p>{{ recipe.process }}</p>
