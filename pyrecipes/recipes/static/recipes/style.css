@@ -9,3 +9,11 @@
 .margin-left {
 	margin-left: 8px;
 }
+
+textarea.size-mid {
+	height: 9rem;
+}
+
+textarea.size-lg {
+	height: 15rem;
+}
