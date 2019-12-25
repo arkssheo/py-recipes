@@ -19,14 +19,16 @@ class RecipeDetail(DetailView):
 
 class RecipeCreate(CreateView):
 	model = Recipe
-	fields = ['title', 'submitted_by', 'ingredient_text', 'process']
+	form_class = RecipeForm
+	# fields = ['title', 'submitted_by', 'ingredient_text', 'process']
 
 	def get_success_url(self):
 		return reverse('recipes:index')
 
 class RecipeUpdate(UpdateView):
 	model = Recipe
-	fields = ['title', 'submitted_by', 'ingredient_text', 'process']
+	form_class = RecipeForm
+	# fields = ['title', 'submitted_by', 'ingredient_text', 'process']
 
 	def get_success_url(self):
 		return reverse_lazy('recipes:index')

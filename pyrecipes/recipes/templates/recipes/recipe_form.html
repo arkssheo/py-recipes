@@ -23,3 +23,9 @@
 	</div>
 </form>
 {% endblock %}
+{% block post-scripts %}
+<script>
+	CKEDITOR.replace('id_ingredient_text');
+	CKEDITOR.replace('id_process');
+</script>
+{% endblock %}
