@@ -28,7 +28,10 @@
 	      	<a class="btn waves-effect waves-light" href="{% url 'recipes:edit' object.id %}">Edit
 				<i class="material-icons right">edit</i>
 	      	</a>
-	      	<a href="{% url 'recipes:delete' object.id %}" class="btn waves-effect waves-light red" type="submit" name="action">Delete
+	      	<a class="btn-flat waves-effect waves-light" onclick="window.print();return false;">Print
+				<i class="material-icons right">print</i>
+	      	</a>
+	      	<a href="{% url 'recipes:delete' object.id %}" class="btn waves-effect waves-light red right" type="submit" name="action">Delete
 			    <i class="material-icons right">delete</i>
 			</a>
 	    </div>
