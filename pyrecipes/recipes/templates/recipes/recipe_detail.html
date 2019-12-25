@@ -19,9 +19,9 @@
 					<li>{{ ingredient }}</li>
 				{% endfor %}
 			</ul> -->
-			<p>{{ object.ingredient_text }}</p>
+			{{ object.ingredient_text|safe }}
 			<p><b>Step-by-step process:</b></p>
-			<p>{{ object.process }}</p>
+			{{ object.process|safe }}
 		
 	    </div>
 	    <div class="card-action">
