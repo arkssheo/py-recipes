@@ -14,11 +14,12 @@
 	    	<span class="card-title">{{ object.title }}</span>
 	      	<p><em>By: {{ object.submitted_by }}</em></p><br>
 			<p><b>Ingredients:</b></p>
-			<ul>
+			<!-- <ul>
 				{% for ingredient in object.ingredient_set.all %}
 					<li>{{ ingredient }}</li>
 				{% endfor %}
-			</ul>
+			</ul> -->
+			<p>{{ object.ingredient_text }}</p>
 			<p><b>Step-by-step process:</b></p>
 			<p>{{ object.process }}</p>
 		

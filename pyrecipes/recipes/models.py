@@ -5,6 +5,7 @@ class Recipe(models.Model):
 	title = models.CharField(max_length=100)
 	submitted_by = models.CharField(max_length=200)
 	process = models.TextField('step-by-Step process', max_length=9000)
+	ingredient_text = models.TextField('ingredients', max_length=2000, default='')
 
 	def __str__(self):
 		return f"'{self.title}', by {self.submitted_by}"
