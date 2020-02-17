@@ -14,18 +14,24 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'Development')
+IS_PROD = True if DJANGO_ENV == 'Production' else False 
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qy!n-4e8qcn_7oez)4zm9ok2o)@rmn+rn=axw&6ov5xx#rim_j'
+# SECRET_KEY = 'qy!n-4e8qcn_7oez)4zm9ok2o)@rmn+rn=axw&6ov5xx#rim_j'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'defaultsecretkey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = not IS_PROD
+SESSION_COOKIE_SECURE = IS_PROD
+CSRF_COOKIE_SECURE = IS_PROD
+SECURE_SSL_REDIRECT = IS_PROD
+SECURE_REFERRER_POLICY = 'same-origin'
+ALLOWED_HOSTS = ['localhost', 'josesmart.com', '127.0.0.1']
 
 
 # Application definition
@@ -73,13 +79,15 @@ WSGI_APPLICATION = 'pyrecipes.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+db_user = os.getenv('DJANGO_DB_USER', 'dev')
+db_pwd = os.getenv('DJANGO_DB_PWD', 'arksdev1')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pyrecipesdb',
-        'USER': 'dev',
-        'PASSWORD': 'arksdev1',
+        'USER': db_user,
+        'PASSWORD': db_pwd,
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -123,3 +131,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
