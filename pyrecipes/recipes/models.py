@@ -6,6 +6,8 @@ class Recipe(models.Model):
 	submitted_by = models.CharField(max_length=200)
 	process = models.TextField('step-by-Step process', max_length=9000)
 	ingredient_text = models.TextField('ingredients', max_length=2000, default='')
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
 		return f"'{self.title}', by {self.submitted_by}"

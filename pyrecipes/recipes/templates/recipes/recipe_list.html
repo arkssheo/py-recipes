@@ -5,13 +5,25 @@
 {% endblock %}
 
 {% block content %}
+<a class="btn waves-effect waves-light" href="{% url 'recipes:new' %}">Create new
+	<i class="material-icons right">add</i>
+</a> 
+<h4>Recently Added</h4>
 <section class="recipe-list">
-	<a class="btn waves-effect waves-light" href="{% url 'recipes:new' %}">Create new
-	    <i class="material-icons right">add</i>
-	</a> 
 	<ul class="collection">
-		{% for recipe in object_list %}
-			<li class="collection-item"><a href="{% url 'recipes:detail' recipe.id %}">{{ recipe }}</a></li>
+		{% for recipe in recent_items %}
+			<li class="collection-item"><a href="{% url 'recipes:detail' recipe.id %}">{{ recipe }} on {{ recipe.created_at }}</a></li>
+		{% endfor %}
+	</ul>
+</section>
+
+<hr>
+
+<h4>All Items</h4>
+<section class="recipe-list">
+	<ul class="collection">
+		{% for recipe in all_ordered %}
+			<li class="collection-item"><a href="{% url 'recipes:detail' recipe.id %}">{{ recipe }} on {{ recipe.created_at }}</a></li>
 		{% endfor %}
 	</ul>
 </section>
