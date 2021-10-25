@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
+import datetime
 
 from .models import Recipe
 from .forms import RecipeForm
@@ -13,6 +14,18 @@ from .forms import RecipeForm
 # 	return render(request, 'recipes/index.html', context)
 class RecipeList(ListView):
 	model = Recipe
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		today = datetime.date.today()
+		weekday = today.weekday()
+		recent_delta = datetime.timedelta(days=weekday, weeks=3)
+		recent_date = today - recent_delta
+
+		context = super().get_context_data(**kwargs)
+
+		context['recent_items'] = self.get_queryset().filter(created_at__gte=recent_date).order_by('-created_at')
+		context['all_ordered'] = self.get_queryset().order_by('-created_at')
+		return context
 
 class RecipeDetail(DetailView):
 	model = Recipe
